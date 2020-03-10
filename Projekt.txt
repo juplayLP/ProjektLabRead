@@ -1,0 +1,1 @@
+Insert into user (Vorname, Nachname, Keymember, Benutzername, Passwort,iButtonID) values ('Fabian','Schluch','0','fabs','pass123','ijroigaaorgi');
