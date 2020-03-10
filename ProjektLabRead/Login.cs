@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProjektLabRead
 {
-    class Loign
+    class Login
     {
     }
 }

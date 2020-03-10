@@ -86,7 +86,7 @@ namespace ProjektLabRead
 
         private void BTN_Login_Click(object sender, EventArgs e)
         {
-
+            Login login=new Login();
         }
     }
 }
