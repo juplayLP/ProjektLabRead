@@ -1,1 +1,18 @@
-Insert into user (Vorname, Nachname, Keymember, Benutzername, Passwort,iButtonID) values ('Fabian','Schluch','0','fabs','pass123','ijroigaaorgi');
+INSERT INTO `user` (`UserID`, `Vorname`, `Nachname`, `E-Mail`, `Keymember`, `Benutzername`, `Passwort`, `iButtonID`) VALUES (NULL, 'Fabian', 'Schluch', 'amboss.lover69@gmail.com', '0', 'Fabs', 'pass123', 'A225E41900A6A100');
+INSERT INTO `user` (`UserID`, `Vorname`, `Nachname`, `E-Mail`, `Keymember`, `Benutzername`, `Passwort`, `iButtonID`) VALUES (NULL, 'Julian', 'Schüler', 'hahaa@gmail.com', '1', 'Jusch', 'pass123', 'C08B241700574100');
+
+UPDATE `user` SET `Nachname` = 'Zdanowicz' WHERE `user`.`UserID` = 2;
+
+Select UserID, Vorname, Nachname, iButtonID From User;
+Select UserID, Vorname, Nachname, user.iButtonID, maschine.MaschinenID, Bezeichnung From user, maschine, zuweisung where User.iButtonID = zuweisung.iButtonID AND zuweisung.MaschinenID = maschine.MaschinenID order by Nachname;
+
+DELETE FROM `zuweisung` WHERE `zuweisung`.`iButtonID` = 'A4D2E21900EAA100' AND `zuweisung`.`MaschinenID` = 'pl23dd';
+INSERT INTO `zuweisung` (`iButtonID`, `MaschinenID`, `Datum`) VALUES ('C08B241700574100', 'pl1cnc', '2020-03-24');
+
+Select * from log where Starttime like '%-02-%';
+
+select Benutzername, user.iButtonID, count(MaschinenID) as anzahl from user, zuweisung where user.iButtonID = zuweisung.iButtonID Group by Vorname Having count(MaschinenID)> 1;
+
+select Benutzername, user.iButtonID, count(MaschinenID) as anzahl from user, zuweisung where user.iButtonID = zuweisung.iButtonID Group by Vorname Having max(count(MaschinenID));
+
+ SELECT MAX(y.num),Vorname, Nachname FROM user, (SELECT COUNT(MaschinenID) AS num FROM zuweisung, user where user.iButtonID = zuweisung.iButtonID GROUP by Vorname)y;
