@@ -256,6 +256,33 @@ namespace WinDruckauftrag
             return dataTbl;
         }
 
+        /// <summary>
+        /// gibt die Daten einer Tabelle als DataTable zurück.
+        /// </summary>
+        /// <param name="column">Spalten der Tabelle, die Ermittelt werden sollen</param>
+        /// <param name="table">Name der Tabelle, dessen Spalten ermittelt werden sollen</param>
+        /// <param name="condition"> Bedingung, Strings eingeschlossen in Hochkommata</param>
+        /// <returns>DataTable der Tabelle</returns>
+        public DataTable CommandSelectAsDataTableFrom(string column,string table, string condition)
+        {
+            DataTable dataTbl = new DataTable();
+            try
+            {
+                connection.Open();
+                command = connection.CreateCommand();
+                command.CommandText = "SELECT "+ column +" FROM " + table + " " + condition;
+                MySqlDataAdapter sqlDataAdap = new MySqlDataAdapter(command.CommandText, connection);
+                sqlDataAdap.Fill(dataTbl);
+                connection.Close();
+            }
+            catch (Exception ex)
+            {
+                connection.Close();
+                MessageBox.Show("Fehler bei 'Select' Table\n" + ex.Message, "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            return dataTbl;
+        }
 
         /// <summary>
         /// fügt Daten in eine Tabelle ein.

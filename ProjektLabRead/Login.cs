@@ -11,7 +11,7 @@ namespace ProjektLabRead
 {
     class Login
     {
-        Dbase db =new Dbase("Projektlabor","root","");
+        Dbase db =new Dbase("Projektlabor","root","Ubuntu12.04!!");
         public Login(string user, string Pass)
         {
             var allowedlogins = db.CommandSelectAsListFrom("Benutzername, Passwort", "user", "WHERE `Keymember` = 1");
@@ -19,7 +19,7 @@ namespace ProjektLabRead
             {
                 if (user == login[0] && Pass == login[1])
                 {
-                    Verwaltung vw = new Verwaltung();
+                    Verwaltung vw = new Verwaltung(1);
                     vw.Show();
                 }
             }
@@ -33,7 +33,9 @@ namespace ProjektLabRead
             {
                 if (rootkey == login[0])
                 {
-                    MessageBox.Show("login erfolgreich!");
+                    Verwaltung vw = new Verwaltung(0);
+                    vw.Show();
+
                 }
             }
         }

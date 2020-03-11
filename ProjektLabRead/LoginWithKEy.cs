@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -24,7 +25,9 @@ namespace ProjektLabRead
             var ids = await Task.FromResult<string>(button.read_IDs());
             MessageBox.Show(ids);
             string[] kid = ids.Split(';');
+            ActiveForm.Hide();
             Login login=new Login(kid[0]);
+            
         }
 
         private void pictureBox2_Click(object sender, EventArgs e)
