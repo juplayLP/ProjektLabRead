@@ -22,7 +22,8 @@ namespace ProjektLabRead
         {
             iButton button = new iButton();
             var ids = await Task.FromResult<string>(button.read_IDs());
-            MessageBox.Show(ids);
+            string[] kid = ids.Split(';');
+            Login login=new Login(kid[1]);
         }
 
         private void pictureBox2_Click(object sender, EventArgs e)

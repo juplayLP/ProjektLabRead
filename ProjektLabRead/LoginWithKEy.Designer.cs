@@ -63,17 +63,17 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Open Sans SemiBold", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Exo 2 SemiBold", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(41, 237);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(367, 39);
+            this.label1.Size = new System.Drawing.Size(354, 43);
             this.label1.TabIndex = 3;
             this.label1.Text = "Bitte PLock-Key Auflegen";
             // 
             // BTN_return
             // 
             this.BTN_return.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BTN_return.Font = new System.Drawing.Font("Open Sans SemiBold", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BTN_return.Font = new System.Drawing.Font("Exo 2 SemiBold", 21.75F, System.Drawing.FontStyle.Bold);
             this.BTN_return.Location = new System.Drawing.Point(151, 426);
             this.BTN_return.Name = "BTN_return";
             this.BTN_return.Size = new System.Drawing.Size(134, 54);
@@ -94,6 +94,7 @@
             this.Controls.Add(this.pictureBox1);
             this.Name = "LoginWithKEy";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "PLock-Manager | Login";
             this.Shown += new System.EventHandler(this.LoginWithKEy_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();

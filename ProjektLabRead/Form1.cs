@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.VisualStyles;
 
 namespace ProjektLabRead
 {
@@ -86,7 +87,10 @@ namespace ProjektLabRead
 
         private void BTN_Login_Click(object sender, EventArgs e)
         {
-            Login login=new Login(TBX_User.Text,TBX_Pass.Text);
+            if (TBX_Pass.Text!="Passwort" && TBX_User.Text!="Nutzername" && !string.IsNullOrWhiteSpace(TBX_Pass.Text) && !string.IsNullOrWhiteSpace(TBX_User.Text))
+            {
+                Login login = new Login(TBX_User.Text, TBX_Pass.Text);
+            }
         }
 
         private void TBX_User_KeyDown(object sender, KeyEventArgs e)
