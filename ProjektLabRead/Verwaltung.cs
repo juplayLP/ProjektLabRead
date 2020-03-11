@@ -17,10 +17,10 @@ namespace ProjektLabRead
         {
             InitializeComponent();
             Dbase dtbl = new Dbase("Projektlabor", "root", "");
-            dtbl.CommandSelectAsDataTableFrom("User");
+           Userdata.DataSource = dtbl.CommandSelectAsDataTableFrom("User");
         }
 
-        private void DataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void Userdata_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }

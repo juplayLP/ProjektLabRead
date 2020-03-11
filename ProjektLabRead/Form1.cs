@@ -90,6 +90,7 @@ namespace ProjektLabRead
             if (TBX_Pass.Text!="Passwort" && TBX_User.Text!="Nutzername" && !string.IsNullOrWhiteSpace(TBX_Pass.Text) && !string.IsNullOrWhiteSpace(TBX_User.Text))
             {
                 Login login = new Login(TBX_User.Text, TBX_Pass.Text);
+                this.Hide();
             }
         }
 

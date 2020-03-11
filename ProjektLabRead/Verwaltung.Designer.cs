@@ -32,12 +32,12 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.Zugriffdata = new System.Windows.Forms.DataGridView();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.Userdata = new System.Windows.Forms.DataGridView();
             this.Tab.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Zugriffdata)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Userdata)).BeginInit();
             this.SuspendLayout();
             // 
             // Tab
@@ -52,7 +52,7 @@
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.dataGridView1);
+            this.tabPage1.Controls.Add(this.Userdata);
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
@@ -82,15 +82,22 @@
             this.Zugriffdata.Size = new System.Drawing.Size(782, 405);
             this.Zugriffdata.TabIndex = 0;
             // 
-            // dataGridView1
+            // Userdata
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 0);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(784, 413);
-            this.dataGridView1.TabIndex = 0;
+            this.Userdata.AllowUserToAddRows = false;
+            this.Userdata.AllowUserToDeleteRows = false;
+            this.Userdata.AllowUserToResizeColumns = false;
+            this.Userdata.AllowUserToResizeRows = false;
+            this.Userdata.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable;
+            this.Userdata.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.Userdata.Location = new System.Drawing.Point(0, 0);
+            this.Userdata.Name = "Userdata";
+            this.Userdata.ReadOnly = true;
+            this.Userdata.RowHeadersWidth = 51;
+            this.Userdata.RowTemplate.Height = 24;
+            this.Userdata.Size = new System.Drawing.Size(790, 423);
+            this.Userdata.TabIndex = 0;
+            this.Userdata.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Userdata_CellContentClick);
             // 
             // Verwaltung
             // 
@@ -104,7 +111,7 @@
             this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.Zugriffdata)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Userdata)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -115,6 +122,6 @@
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.DataGridView Zugriffdata;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView Userdata;
     }
 }
