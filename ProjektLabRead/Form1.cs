@@ -86,7 +86,22 @@ namespace ProjektLabRead
 
         private void BTN_Login_Click(object sender, EventArgs e)
         {
-            Login login=new Login();
+            Login login=new Login(TBX_User.Text,TBX_Pass.Text);
+        }
+
+        private void TBX_User_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                BTN_Login_Click(this,new EventArgs());
+            }
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+            LoginWithKEy lwk = new LoginWithKEy();
+            lwk.Show();
+            this.Hide();
         }
     }
 }

@@ -16,23 +16,29 @@ namespace WinZugriffssteuerung
         private string ids = string.Empty;
         private string com = "COM3"; //Used COM-Port                               
         
-        private string read_IDs()
+        public string read_IDs()
         {
             //Only for test if the data reading works fine
             try
             {
+                serialinit();
                 serport.Open(); //Opens the serial-connection
-
-                ids = serport.ReadLine(); //Reads the data from the serial connection                
                 
-                if (ids.Length == 23) //Check if the data stored in IDs is a valid
-                    return ids; //Output of the valid IDs
+                ids = serport.ReadLine(); //Reads the data from the serial connection                
+
+                if (ids.Length == 23)
+                {
+                    //Check if the data stored in IDs is a valid
+                    serport.Close();
+                    return ids;
+                } //Output of the valid IDs
                 else
                     MessageBox.Show("IDs fehlerhaft!"); //Error if the data in "mac" is not a valid MAC-Address
 
                 ids = "";
 
-                serport.Close(); //Closing the serial-connection
+                 //Closing the serial-connection
+                 serport.Close();
             }
 
             catch (Exception ex)
@@ -41,10 +47,15 @@ namespace WinZugriffssteuerung
 
                 serport.Close(); //Closing the serial-connection
             }
-
+            
             return "-";
         }
-        
+
+        public async Task<string> run()
+        {
+            return read_IDs();
+        }
+
         private void serialinit()
         {
             serport = new SerialPort(com); //New instance of the SerialPort-Class with the used COM-Interface as transfer parameter

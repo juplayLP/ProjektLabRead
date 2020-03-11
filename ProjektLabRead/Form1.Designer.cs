@@ -54,13 +54,16 @@
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label1.Font = new System.Drawing.Font("Open Sans SemiBold", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.label1.Location = new System.Drawing.Point(65, 213);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(303, 39);
+            this.label1.Size = new System.Drawing.Size(305, 41);
             this.label1.TabIndex = 1;
             this.label1.Text = "Mit PLock anmelden";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // label2
             // 
@@ -92,6 +95,7 @@
             this.TBX_User.TabIndex = 4;
             this.TBX_User.Text = "Nutzername";
             this.TBX_User.Enter += new System.EventHandler(this.TBX_User_Enter);
+            this.TBX_User.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TBX_User_KeyDown);
             this.TBX_User.Leave += new System.EventHandler(this.TBX_User_Leave);
             // 
             // TBX_Pass
@@ -137,7 +141,7 @@
             this.MinimizeBox = false;
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Form1";
+            this.Text = "PLock Manager";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
