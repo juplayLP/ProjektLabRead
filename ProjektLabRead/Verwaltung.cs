@@ -25,8 +25,26 @@ namespace ProjektLabRead
             {
                 Userdata.DataSource =
                     dtbl.CommandSelectAsDataTableFrom("UserID, Vorname, Nachname, `E-Mail`, Keymember, IButtonID","user","WHERE 1");
+                TBX_Vorname.Visible = false;
+                TBX_Benutzername.Visible = false;
+                TBX_Nachname.Visible = false;
+                TBX_Passwort.Visible = false;
+                TBX_UID.Visible = false;
+                TBX_Email.Visible = false;
+                TBX_Ibutton.Visible = false;
+                CBX_Key.Visible = false;
+                label1.Visible = false;
+                label2.Visible = false;
+                label3.Visible = false;
+                label4.Visible = false;
+                label5.Visible = false;
+                label6.Visible = false;
+                label7.Visible = false;
+                button3.Visible = false;
+                button2.Visible = false;
+                button1.Visible = false;
             }
-           Zugriffdata.DataSource = dtbl.CommandSelectAsDataTableFrom("Zuweisung");
+            Zugriffdata.DataSource = dtbl.CommandSelectAsDataTableFrom("Zuweisung");
         }
 
         private void Userdata_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -53,6 +71,37 @@ namespace ProjektLabRead
         {
             Application.Exit(e);
 
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if (Userdata.SelectedCells.Count > 0)
+            {
+                int selectedrowindex = Userdata.SelectedCells[0].RowIndex;
+                DataGridViewRow selectedRow = Userdata.Rows[selectedrowindex];  
+                TBX_Vorname.Text = Convert.ToString(selectedRow.Cells["Vorname"].Value); 
+                TBX_Nachname.Text = Convert.ToString(selectedRow.Cells["Nachname"].Value); 
+                TBX_Email.Text = Convert.ToString(selectedRow.Cells["E-mail"].Value); 
+                TBX_Benutzername.Text = Convert.ToString(selectedRow.Cells["Benutzername"].Value); 
+                TBX_Passwort.Text = Convert.ToString(selectedRow.Cells["Passwort"].Value);
+                TBX_Ibutton.Text = Convert.ToString(selectedRow.Cells["iButtonID"].Value);
+                TBX_UID.Text = Convert.ToString(selectedRow.Cells["UserID"].Value);
+                if (Convert.ToBoolean(selectedRow.Cells["KeyMember"].Value) == true)
+                {
+                    CBX_Key.CheckState = CheckState.Checked;
+                    CBX_Key.Checked = true;
+                }
+                else
+                {
+                    CBX_Key.Checked = false;
+                    CBX_Key.CheckState = CheckState.Unchecked;
+                }
+            }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            ReadKey read = new ReadKey(this);
         }
     }
 }

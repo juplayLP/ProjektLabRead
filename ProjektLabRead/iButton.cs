@@ -22,7 +22,7 @@ namespace WinZugriffssteuerung
             try
             {
                 serialinit();
-                serport.Open(); //Opens the serial-connection
+                /*serport.Open(); //Opens the serial-connection
                 
                 ids = serport.ReadLine(); //Reads the data from the serial connection                
 
@@ -38,7 +38,11 @@ namespace WinZugriffssteuerung
                 ids = "";
 
                  //Closing the serial-connection
-                 serport.Close();
+                 serport.Close();*/
+                serport.Open();
+                ids = serport.ReadLine();
+                serport.Close();
+                return ids;
             }
 
             catch (Exception ex)
