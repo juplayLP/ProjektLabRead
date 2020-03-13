@@ -22,3 +22,19 @@ private void Button1_Click(object sender, EventArgs e) //Speichern Button
 // Ich wollte bei dir nicht alles verändern wenn ich alles stage bei mir funktioniert das nich so gut also ist hier der code für den Speichern button zurücksezten folgt
 
 // ich habe E-Mail in der DB zu EMail verändert weil das erst nich wollte dürfte jetzt auch so fluppen musst nur den code dort ändern
+
+
+
+private void Button2_Click(object sender, EventArgs e)                            //zurücksetzen Button
+        {
+            TBX_Benutzername.Text = "";
+            TBX_Nachname.Text = "";
+            TBX_Vorname.Text = "";
+            TBX_Passwort.Text = "";
+            TBX_UID.Text = "";
+            TBX_Ibutton.Text = "";
+            TBX_Email.Text = "";
+            CBX_Key.CheckState = CBX_Key.CheckState = CheckState.Unchecked;
+        }
+
+//das Datagrid wird aktuell nicht aktualisiert wenn mann auf den Speichern button klickt vielleicht weißt du ja ne lösung 
