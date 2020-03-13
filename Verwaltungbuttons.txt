@@ -1,0 +1,24 @@
+
+
+private void Button1_Click(object sender, EventArgs e) //Speichern Button
+        {
+            if (TBX_UID.Text != null) {
+                int c;
+                if(CBX_Key.Checked == true)
+                {
+                    c = 1;
+                }
+                else
+                {
+                    c = 0;
+                }
+                Dbase dba = new Dbase("Projektlabor", "root", "");
+                dba.CommandUpdate("user", "Vorname = \' " + TBX_Vorname.Text + " \' ," + "Nachname = \' " + TBX_Nachname.Text + " \' ," +" Email = \' " + TBX_Email.Text + " \' ," + "Benutzername = \' " + TBX_Benutzername.Text + " \' ," + "iButtonID = \'" + TBX_Ibutton.Text + "\' ," + " Passwort = \' " + TBX_Passwort.Text + " \' ," + "Keymember = \' " + c +" \' ", "Where UserID = \' "+ TBX_UID.Text + " \' ");
+            }
+
+        }
+
+
+// Ich wollte bei dir nicht alles verändern wenn ich alles stage bei mir funktioniert das nich so gut also ist hier der code für den Speichern button zurücksezten folgt
+
+// ich habe E-Mail in der DB zu EMail verändert weil das erst nich wollte dürfte jetzt auch so fluppen musst nur den code dort ändern
