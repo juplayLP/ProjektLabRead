@@ -13,10 +13,12 @@ namespace ProjektLabRead
 {
     public partial class Verwaltung : Form
     {
+        int stat;
         public Verwaltung(int status)
         {
             InitializeComponent();
-            Dbase dtbl = new Dbase("Projektlabor", "root", "Ubuntu12.04!!");
+            int stat;
+            Dbase dtbl = new Dbase("Projektlabor", "root", "");
             if (status == 1)
             {
                 Userdata.DataSource = dtbl.CommandSelectAsDataTableFrom("User");
@@ -24,7 +26,7 @@ namespace ProjektLabRead
             else
             {
                 Userdata.DataSource =
-                    dtbl.CommandSelectAsDataTableFrom("UserID, Vorname, Nachname, `E-Mail`, Keymember, IButtonID","user","WHERE 1");
+                    dtbl.CommandSelectAsDataTableFrom("UserID, Vorname, Nachname, `E-Mail`, Keymember, IButtonID", "user", "WHERE 1");
                 TBX_Vorname.Visible = false;
                 TBX_Benutzername.Visible = false;
                 TBX_Nachname.Visible = false;
@@ -59,11 +61,11 @@ namespace ProjektLabRead
 
         private void Verwaltung_ResizeEnd(object sender, EventArgs e)
         {
-            Tab.Height = this.Height-22;
+            Tab.Height = this.Height - 22;
             Tab.Width = this.Width - 15;
-            Userdata.Height= Tab.Height-40;
+            Userdata.Height = Tab.Height - 40;
             Userdata.Width = Tab.Width - 2;
-            Zugriffdata.Height= Tab.Height-40;
+            Zugriffdata.Height = Tab.Height - 40;
             Zugriffdata.Width = Tab.Width - 2;
         }
 
@@ -78,11 +80,11 @@ namespace ProjektLabRead
             if (Userdata.SelectedCells.Count > 0)
             {
                 int selectedrowindex = Userdata.SelectedCells[0].RowIndex;
-                DataGridViewRow selectedRow = Userdata.Rows[selectedrowindex];  
-                TBX_Vorname.Text = Convert.ToString(selectedRow.Cells["Vorname"].Value); 
-                TBX_Nachname.Text = Convert.ToString(selectedRow.Cells["Nachname"].Value); 
-                TBX_Email.Text = Convert.ToString(selectedRow.Cells["E-mail"].Value); 
-                TBX_Benutzername.Text = Convert.ToString(selectedRow.Cells["Benutzername"].Value); 
+                DataGridViewRow selectedRow = Userdata.Rows[selectedrowindex];
+                TBX_Vorname.Text = Convert.ToString(selectedRow.Cells["Vorname"].Value);
+                TBX_Nachname.Text = Convert.ToString(selectedRow.Cells["Nachname"].Value);
+                TBX_Email.Text = Convert.ToString(selectedRow.Cells["Email"].Value);
+                TBX_Benutzername.Text = Convert.ToString(selectedRow.Cells["Benutzername"].Value);
                 TBX_Passwort.Text = Convert.ToString(selectedRow.Cells["Passwort"].Value);
                 TBX_Ibutton.Text = Convert.ToString(selectedRow.Cells["iButtonID"].Value);
                 TBX_UID.Text = Convert.ToString(selectedRow.Cells["UserID"].Value);
@@ -103,6 +105,95 @@ namespace ProjektLabRead
         {
             ReadKey read = new ReadKey(this);
         }
+
+        private void Button1_Click(object sender, EventArgs e)
+        {
+            if (TBX_UID.Text != null) {
+                int c;
+                if(CBX_Key.Checked == true)
+                {
+                    c = 1;
+                }
+                else
+                {
+                    c = 0;
+                }
+                Dbase dba = new Dbase("Projektlabor", "root", "");
+                dba.CommandUpdate("user", "Vorname = \' " + TBX_Vorname.Text + " \' ," + "Nachname = \' " + TBX_Nachname.Text + " \' ," +" Email = \' " + TBX_Email.Text + " \' ," + "Benutzername = \' " + TBX_Benutzername.Text + " \' ," + "iButtonID = \'" + TBX_Ibutton.Text + "\' ," + " Passwort = \' " + TBX_Passwort.Text + " \' ," + "Keymember = \' " + c +" \' ", "Where UserID = \' "+ TBX_UID.Text + " \' ");
+            }
+
+        }
+
+        private void Button2_Click(object sender, EventArgs e)
+        {
+            TBX_Benutzername.Text = "";
+            TBX_Nachname.Text = "";
+            TBX_Vorname.Text = "";
+            TBX_Passwort.Text = "";
+            TBX_UID.Text = "";
+            TBX_Ibutton.Text = "";
+            TBX_Email.Text = "";
+            CBX_Key.CheckState = CBX_Key.CheckState = CheckState.Unchecked;
+        }
+
+        private void TBX_IButt_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Button7_Click(object sender, EventArgs e) //read ibutton
+        {
+            ReadKey read = new ReadKey(this);     //wert in textfeld schreiben
+        }
+
+        private void Button6_Click(object sender, EventArgs e) //Entziehen
+        {
+            Dbase krecht = new Dbase("Projektlabor", "root", "");
+            //krecht.("zuweisung", "");                                         //berrechtigungen des Ausgeählten IButtons anzeigen
+            CMBX_Recht.Items.Clear();
+            CMBX_Recht.Items.Add("test");                                        // rechte in combobox schreiben
+            button8.Text = "delete";
+
+            stat = 0;                           //status entziehen
+        }
+
+        private void Button5_Click(object sender, EventArgs e) //verleihen
+        {
+            Dbase recht = new Dbase("Projektlabor", "root", "");
+            //recht.("zuweisung","");                                               //mögliche rechte anzeigen
+            CMBX_Recht.Items.Clear();
+            CMBX_Recht.Items.Add("test");                                              // rechte in combobox schreiben
+            CMBX_Recht.Items.Add("test2");
+            button8.Text = "set";
+
+
+            stat = 1;                       //verleihen
+            
+        }
+
+        private void Button8_Click(object sender, EventArgs e)  //set bzw. delete
+        {
+           if(stat == 1)
+            {
+                Dbase ein = new Dbase("Projektlabor", "root", "");
+                DateTime date = DateTime.Now;
+                date.ToString("yyyy-mm-dd");
+                ein.CommandInsertInto("zuweisung", "iButtonID, MaschinenID, Datum", "\'" + TBX_IButt.Text + "\' , \' " + CMBX_Recht.SelectedItem.ToString() + "\', \'" + date + "\'"); // einfuegen
+            }
+            else
+            {
+                if(stat == 0)
+                {
+                    // delete dbase
+                    // 
+                }
+            }
+            
+        }
+
+        private void CMBX_Recht_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
-

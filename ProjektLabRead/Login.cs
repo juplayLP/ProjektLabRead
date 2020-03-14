@@ -11,7 +11,7 @@ namespace ProjektLabRead
 {
     class Login
     {
-        Dbase db =new Dbase("Projektlabor","root","Ubuntu12.04!!");
+        Dbase db =new Dbase("Projektlabor","root","");
         public Login(string user, string Pass)
         {
             var allowedlogins = db.CommandSelectAsListFrom("Benutzername, Passwort", "user", "WHERE `Keymember` = 1");
