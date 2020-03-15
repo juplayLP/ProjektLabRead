@@ -149,9 +149,20 @@ namespace ProjektLabRead
         private void Button6_Click(object sender, EventArgs e) //Entziehen
         {
             Dbase krecht = new Dbase("Projektlabor", "root", "");
-            //krecht.("zuweisung", "");                                         //berrechtigungen des Ausgeählten IButtons anzeigen
+
+            var re = new List<string[]> { };
+                re = krecht.CommandSelectAsListFrom("MaschinenID", "zuweisung"," where iButtonID = \'"+ TBX_IButt.Text+"\'");    //berrechtigungen des Ausgeählten IButtons anzeigen
+
             CMBX_Recht.Items.Clear();
-            CMBX_Recht.Items.Add("test");                                        // rechte in combobox schreiben
+
+            
+            for(int o = 0;o < re.Count; o++)
+            {
+                string[] i = re[o];
+                string y = i[0];
+                CMBX_Recht.Items.Add(y); 
+            }
+
             button8.Text = "delete";
 
             stat = 0;                           //status entziehen
@@ -159,16 +170,42 @@ namespace ProjektLabRead
 
         private void Button5_Click(object sender, EventArgs e) //verleihen
         {
-            Dbase recht = new Dbase("Projektlabor", "root", "");
-            //recht.("zuweisung","");                                               //mögliche rechte anzeigen
+            Dbase brecht = new Dbase("Projektlabor", "root", "");
+                                                                           //mögliche rechte anzeigen
             CMBX_Recht.Items.Clear();
-            CMBX_Recht.Items.Add("test");                                              // rechte in combobox schreiben
-            CMBX_Recht.Items.Add("test2");
-            button8.Text = "set";
 
+            var bre = new List<string[]> { };
+            bre = brecht.CommandSelectAsListFrom("MaschinenID", "zuweisung", " where iButtonID = \'" + TBX_IButt.Text + "\'");    //berrechtigungen des Ausgeählten IButtons anzeigen
+
+            var equal = new List<string[]> { };
+            equal = brecht.CommandSelectAsListFrom("MaschinenID","maschine","");
+
+            for (int o = 0; o < equal.Count; o++)
+            {
+                string[] i = equal[o];
+                for (int g = 0; g < bre.Count; g++)
+                {
+                    string[] h = bre[g];
+                    if (i[0] == h[0])
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        if (i[0] != h[0] && g == bre.Count - 1)
+                        {
+                            string y = i[0];
+                            CMBX_Recht.Items.Add(y);
+                        }
+                    }
+                }
+                
+
+            }
 
             stat = 1;                       //verleihen
-            
+
+            button8.Text = "set";
         }
 
         private void Button8_Click(object sender, EventArgs e)  //set bzw. delete
@@ -177,15 +214,14 @@ namespace ProjektLabRead
             {
                 Dbase ein = new Dbase("Projektlabor", "root", "");
                 DateTime date = DateTime.Now;
-                date.ToString("yyyy-mm-dd");
-                ein.CommandInsertInto("zuweisung", "iButtonID, MaschinenID, Datum", "\'" + TBX_IButt.Text + "\' , \' " + CMBX_Recht.SelectedItem.ToString() + "\', \'" + date + "\'"); // einfuegen
+                ein.CommandInsertInto("zuweisung", "iButtonID, MaschinenID, Datum", "\'" + TBX_IButt.Text + "\' , \'" + CMBX_Recht.SelectedItem.ToString() + "\', \'" + date.ToString("yyyy-MM-dd")+"\'"); // einfuegen
             }
             else
             {
                 if(stat == 0)
                 {
-                    // delete dbase
-                    // 
+                    Dbase del = new Dbase("Projektlabor", "root", "");
+                    del.CommandDelete("zuweisung", "WHERE iButtonID = \'" + TBX_IButt.Text + "\' AND MaschinenID = \'"+CMBX_Recht.SelectedItem.ToString()+"\'");
                 }
             }
             

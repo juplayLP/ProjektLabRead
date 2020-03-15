@@ -308,12 +308,30 @@ namespace WinDruckauftrag
             }
         }
 
+        public void CommandDelete(string table, string condition)
+        {
+            try
+            {
+                connection.Close();
+                connection.Open();
+                string mydeleteQuery = "DELETE FROM " + table + " " + condition;
+                MySqlCommand commanddelete = new MySqlCommand(mydeleteQuery, connection);
+                commanddelete.ExecuteNonQuery();
+                connection.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Fehler bei 'Delete From'\n" + ex.Message, "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
         /// <summary>
         /// fügt Daten in eine Tabelle ein.
         /// </summary>
         /// <param name="table"> Name der Tabelle, in die eingefügt werden soll</param>
-        /// <param name="columnNames"> Array der Spaltennamen</param>
-        /// <param name="values"> Array der Datenwerte</param>
+        /// <param name="condition"> Bedingung, Strings eingeschlossen in Hochkommata</param>
+       
+
         public void CommandInsertInto(string table, string[] columnNames, string[] values)
         {
             try
